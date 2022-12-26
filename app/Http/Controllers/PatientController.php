@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use toastr;
 use App\Models\patient;
 use Illuminate\Http\Request;
 Use Alert;
@@ -41,8 +42,11 @@ class PatientController extends Controller
             'name'=>$request->name,
             'age'=>$request->age,
             'address'=>$request->address,
+            'phone'=>$request->phone,
+            'note'=>$request->note,
+
         ]);
-        Alert::success(' تم اضافه بيانات القرض   بنجاح ');
+        toastr()->success('تم اضافه البيانات بنجاح');
         return redirect()->route('patients.index');
     }
 
@@ -82,8 +86,10 @@ class PatientController extends Controller
             'name'=>$request->name,
             'age'=>$request->age,
             'address'=>$request->address,
+            'phone'=>$request->phone,
+            'note'=>$request->note,
         ]);
-       
+        toastr()->success('تم تحديث البيانات بنجاح');
         return redirect()->route('patients.index');
     }
 
@@ -97,6 +103,7 @@ class PatientController extends Controller
     {
         $patients =patient::where('id',$id)->first();
         $patients->delete();
+        toastr()->success('تم حذف البيانات بنجاح');
         return redirect()->route('patients.index');
     }
 }

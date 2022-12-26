@@ -1,251 +1,220 @@
-@extends('Layouts.header')
+@extends('home')
 @section('title', 'المرضى ')
+@section('page', 'قائمه المرضى')
+
 @section('css')
 
 @endsection
 @section('content')
 
-
-
-    <div class="container mt-3 mb-3">
-        <div class="row">
-            <div class="col-md-9 col-sm-9 col-lg-9">
-                <div class="">
-                    <h3> قائمه المرضى </h3>
+<div class="row gutters">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        
+        <div class="table-container">
+            <div class="t-header">
+             <div class="row">
+                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-8 col-8">
+                    @yield('page')
                 </div>
-            </div>
-            <div class="col-md-3 col-sm-3 col-lg-3">
-                <div class="">
-                    <a href="#" class="action quickview btn btn-info" data-link-action="quickview" title="Quick view"
-                        data-bs-toggle="modal" data-bs-target="#exampleModal"> اضافة مريض </a>
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#basicModal">
+                        اضافه 
+                    </button>
                 </div>
+                <div class="col-xl-0 col-lg-0 col-md-0 col-sm-2 col-2">
+                </div>
+             </div>
             </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-
-            <div class="col-sm">
-                <table id="example" class="display table table-striped" style="width:100%">
+            <div class="table-responsive">
+                <table id="fixedHeader" class="table custom-table text-center">
                     <thead>
-                        <tr style="text-align: center;color:black; background-color:rgb(16, 161, 180)">
-                            <th >الاسم </th>
-                            <th >السن </th>
-                            <th >العنوان </th>
-                            <th >العمليات </th>
+                        <tr>
+                            <th>#</th>
+                          <th>الاسم</th>
+                          <th>العمر</th>
+                          <th>رقم التليفون</th>
+                          <th>العنوان</th>
+                          <th>ملاحظات</th>
+                          <th></th>
+                          <th></th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $x = 1  ?>
                         @foreach ($patients as $patient)
-                            <tr>
-                                <td style="text-align: center;color:red">{{ $patient->name }}</td>
-                                <td style="text-align: center;color:red">{{ $patient->age }}</td>
-                                <td style="text-align: center;color:red">{{ $patient->address }}</td>
-                                <td>
-                                    <div class="conhhh text-center">
-                                        <a href="#" style="color: white;" class="action quickview btn btn-primary"
-                                            data-link-action="quickview" title="Quick view" data-bs-toggle="modal"
-                                            data-bs-target="#editModal{{ $patient->id }}"> تعديل </a>
+                        <tr>
+                          <td>{{ $x++ }}</td>
+                          <td>{{ $patient->name }}</td>
+                          <td>{{ $patient->age }}</td>
+                          <td>{{ $patient->phone }}</td>
+                          <td>{{ $patient->address ?? '---' }}</td>
+                          <td>{{ $patient->note ?? '---' }}</td>
 
-                                        <a href="#" style="color: white;" class="action quickview btn btn-danger"
-                                            data-link-action="quickview" title="Quick view" data-bs-toggle="modal"
-                                            data-bs-target="#delete{{ $patient->id }}"> حذف </a>
-                                </td>
-                                <div class="countermodel contentmoder">
-                                    <div class="modal fade" id="editModal{{ $patient->id }}" tabindex="-1"
-                                        role="dialog">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h4 class="heading-title">تعديل بيانات المريض </h4>
-                                                    <button type="button" class="close" data-bs-dismiss="modal"
-                                                        aria-label="Close"><span aria-hidden="true">x</span></button>
-                                                </div>
-
-                                                <div class="modal-body">
-
-                                                    <div class="cobtervvvbb">
-
-                                                        <form action="{{ route('patients.update', $patient->id) }}"
-                                                            method="POST">
-                                                            {{ method_field('patch') }}
-                                                            @csrf
-                                                            <div class="bd-examplepl">
-                                                                <div class="row">
-                                                                    <p class="italic"><small>الحقول التى تحتوى على
-                                                                            هذه العلامة (*) حقول مطلوبة.</small></p>
-                                                                    <input type="hidden" name="id"
-                                                                        value="{{ $patient->id }}">
-                                                                    <div
-                                                                        class="form-group col-12 col-md-12 col-lg-12 pr-0 pl-0 labelform">
-                                                                        <label> اسم المريض *</label>
-                                                                        <div class="controlsopop">
-                                                                            <i class="fas fa-user"></i>
-                                                                            <input class="form-control" type="text"
-                                                                                name="name" placeholder="" required
-                                                                                value="{{ $patient->name }}">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div
-                                                                        class="form-group col-12 col-md-12 col-lg-12 pr-0 pl-0 labelform">
-                                                                        <label> السن *</label>
-                                                                        <div class="controlsopop">
-                                                                            <i class="fas fa-user"></i>
-                                                                            <input class="form-control" type="text"
-                                                                                name="age" placeholder="" required
-                                                                                value="{{ $patient->age }}">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div
-                                                                    class="form-group col-12 col-md-12 col-lg-12 pr-0 pl-0 labelform">
-                                                                    <label> العنوان *</label>
-                                                                    <div class="controlsopop">
-                                                                        <i class="fas fa-user"></i>
-                                                                        <input class="form-control" type="text"
-                                                                            name="address" placeholder="" required
-                                                                            value="{{ $patient->address }}">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group col-12 col-md-12 col-lg-12 pr-0 pl-0">
-                                                                <div class="buttonofff">
-                                                                    <button type="submit" class="btn btn-info">حفظ</button>
-                                                                    <button type="button" class=" btn btn-secondary"
-                                                                        data-bs-dismiss="modal"
-                                                                        aria-label="Close">غلق</button>
-
-                                                                </div>
-                                                            </div>
-                                                    </div>
-                                                    </form>
-                                                </div><!-- bd-examplepl -->
-                                            </div><!-- cobtervvvbb -->
+                          <td>  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#basicModal{{ $patient->id }}">
+                            <span class="icon-edit"></span>
+                        </button></td>
+                          <td>  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#DeleteModal{{ $patient->id }}">
+                            <span class="icon-trash"></span>
+                        </button></td>
+                        </tr>
+                        	<!-- Modal -->
+                    <div class="modal fade" id="basicModal{{ $patient->id }}" tabindex="-1" role="dialog" aria-labelledby="basicModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="basicModalLabel">تعديل مريض</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{{ route('patients.update',$patient->id) }}" method="post" >
+                                    @csrf
+                                    @method('PUT')
+                                <div class="modal-body">
+                                
+                                    <div class="col-xl-12 col-lg col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label for="inputReadOnly">الاسم <span class="text-danger">*</span></label>
+                                            <input class="form-control" id="inputReadOnly" type="text" value="{{ $patient->name }}" name="name">
                                         </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label for="inputReadOnly">العمر<span class="text-danger">*</span></label>
+                                            <input class="form-control" id="inputReadOnly" type="text" value="{{ $patient->age }}" name="age">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label for="inputReadOnly">رقم التليفون<span class="text-danger">*</span></label>
+                                            <input class="form-control" id="inputReadOnly" type="text" value="{{ $patient->phone }}" name="phone">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label for="inputReadOnly">العنوان</label>
+                                            <input class="form-control" id="inputReadOnly" type="text" value="{{ $patient->address ?? '---' }}" name="address">
+                                        </div>
+                                    </div>
+                                
+                                        
+                                    <div class="col-xl-12 col-lg col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <textarea name="note" id="" cols="60" rows="3" class="form-control">{{ $patient->note  ?? '---'}}</textarea>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">حفظ</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Delete Model  -->
+                         	<!-- Modal -->
+                             <div class="modal fade" id="DeleteModal{{ $patient->id }}" tabindex="-1" role="dialog" aria-labelledby="basicModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="basicModalLabel">حذف مريض</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="{{ route('patients.destroy',$patient->id) }}" method="post" >
+                                            @csrf
+                                            @method('Delete')
+                                        <div class="modal-body">
+                                        
+                                            <div class="col-xl-12 col-lg col-md-12 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <h5>هل انت متاكد من حذف بيانات المريض 
+                                                    <span class="text-danger mx-3 ">{{ $patient->name }}</span>    
+                                                    </h5>
+                                                   
+                                                </div>
+                                            </div>
+                                
+                                        
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">حفظ</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+                                        </div>
+                                    </form>
                                     </div>
                                 </div>
-            </div>
-
-            {{-- --------------------------------------- --}}
-
-            <div class="countermodel contentmoder">
-                <div class="modal fade" id="delete{{ $patient->id }}" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="heading-title"> حذف بيانات مريض </h4>
-                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">x</span></button>
                             </div>
-
-                            <div class="modal-body">
-
-                                <div class="cobtervvvbb">
-
-                                    <form action="{{ route('patients.destroy', $patient->id) }}" method="POST">
-                                        @method('Delete')
-                                        @csrf
-                                        <div class="bd-examplepl">
-                                            <div class="row">
-
-                                                <input type="hidden" name="id" value="{{ $patient->id }}">
-                                                هل انت متاكد من الحذف
-                                                <div class="form-group col-12 col-md-12 col-lg-12 pr-0 pl-0">
-                                                    <div class="buttonofff">
-                                                        <button type="submit" class="btn btn-info">موافق</button>
-                                                        <button type="button" class=" btn btn-secondary"
-                                                            data-bs-dismiss="modal" aria-label="Close">الغاء</button>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    </form>
-                                </div><!-- bd-examplepl -->
-                            </div><!-- cobtervvvbb -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {{-- ---------------------------------------- --}}
-
-            </tr>
-            @endforeach
-            </tbody>
+                        @endforeach
+                    </tbody>
             </table>
-        </div>
-
-    </div>
-    </div>
-
-    <div class="contentmoder">
-
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="heading-title">اضافة مريض </h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">x</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <p class="italic"><small>الحقول التى تحتوى على
-                                    هذه العلامة (*) حقول مطلوبة.</small></p>
-                            <form action="{{ route('patients.store') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <div class="col-md-12 col-sm-12 col-lg-12 pl-0 mb-25 pr-0 pl-0">
-                                    <div class="cobtervvvbb">
-                                        <div class="datapriii">
-                                        </div>
-                                    </div>
-                                    <div class="bd-examplepl">
-                                        <div class="row">
-                                            <div class="form-group col-12 labelform">
-                                                <label> اسم المريض *</label>
-                                                <div class="controlsopop">
-                                                    <i class="far fa-envelope"></i>
-                                                    <input type="text" name="name" placeholder="اضافة"
-                                                        class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-12 labelform">
-                                                <label> السن *</label>
-                                                <div class="controlsopop">
-                                                    <i class="far fa-envelope"></i>
-                                                    <input type="text" name="age" placeholder="اضافة"
-                                                        class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-12 labelform">
-                                                <label> العنوان *</label>
-                                                <div class="controlsopop">
-                                                    <i class="far fa-envelope"></i>
-                                                    <input type="text" name="address" placeholder="اضافة"
-                                                        class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-12 col-md-12 col-lg-12 pr-0 pl-0">
-                                                <div class="buttonofff">
-                                                    <button type="button" class=" btn btn-secondary"
-                                                        data-bs-dismiss="modal" aria-label="Close">غلق</button>
-                                                    <button type="submit" class="btn btn-info">حفظ</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div><!-- bd-examplepl -->
-                                </div><!-- cobtervvvbb -->
-                        </div>
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
-    </div><!-- Modal end -->
-    </div>
 
+    </div>
+</div>
+
+	<!-- Modal -->
+    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="basicModalLabel">اضافه مريض</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('patients.store') }}" method="post" >
+                    @csrf
+                <div class="modal-body">
+                 
+                    <div class="col-xl-12 col-lg col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="inputReadOnly">الاسم <span class="text-danger">*</span></label>
+                            <input class="form-control" id="inputReadOnly" type="text" placeholder="ادخل الاسم" name="name">
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-lg col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="inputReadOnly">العمر<span class="text-danger">*</span></label>
+                            <input class="form-control" id="inputReadOnly" type="text" placeholder="ادخل السن" name="age">
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-lg col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="inputReadOnly">رقم التليفون<span class="text-danger">*</span></label>
+                            <input class="form-control" id="inputReadOnly" type="text" placeholder="ادخل رقم التليفون" name="phone">
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-lg col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="inputReadOnly">العنوان</label>
+                            <input class="form-control" id="inputReadOnly" type="text" placeholder="ادخل العنوان" name="address">
+                        </div>
+                    </div>
+                
+                          
+                    <div class="col-xl-12 col-lg col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <textarea name="note" id="" cols="60" rows="3" placeholder="الامراض الذى يعانى منها المريض" class="form-control"></textarea>
+                        </div>
+                    </div>
+                 
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">حفظ</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
 
 @endsection
 @section('scripts')
-    @include('sweetalert::alert')
+   
 @endsection

@@ -14,7 +14,8 @@ class patient extends Model
     protected $fillable = [
            'name',
            'age',
-           'address',
+           'address','phone','note'
+
     ];
 
     public function visits(){

@@ -11,11 +11,11 @@
     
 </head>
 
-<body>
+<body style="background-color: #ecf0ec;">
 
    <div class="container">
     <div class="row">
-        <nav class="navbar navbar-expand-lg fs-3 navbar-dark bg-info bg-gradient p-3">
+        <nav class="navbar navbar-expand-lg fs-3 navbar-dark bg-dark bg-gradient p-3">
             <div class="container-fluid">
             
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

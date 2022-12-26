@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PatientController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VisitController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\PatientController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,15 +18,35 @@ use App\Http\Controllers\TicketController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/logout',[HomeController::class,'logout'])->name('logout');
+
+Route::group(['middleware'=>'auth:web'],function (){
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::resource('/patients',PatientController::class);
+    Route::resource('/prouduts',ProductController::class);
+    Route::resource('/visits',VisitController::class);
+    Route::resource('/ticket',TicketController::class);
 
 
 
-Route::resource('/patients',PatientController::class);
-Route::resource('/prouduts',ProductController::class);
-Route::resource('/visits',VisitController::class);
-Route::resource('/ticket',TicketController::class);
+   
+});
 
 
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('home');
+
+
+
+
+
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

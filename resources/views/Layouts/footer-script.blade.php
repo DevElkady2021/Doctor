@@ -1,8 +1,32 @@
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<!-- Required jQuery first, then Bootstrap Bundle JS -->
+    <script src="{{ asset('public/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('public/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('public/js/moment.js') }}"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    	<!-- Daterange -->
+		<script src="{{ asset('public/vendor/daterange/daterange.js') }}"></script>
+		<script src="{{ asset('public/vendor/daterange/custom-daterange.js') }}"></script>
+
+    	<!-- Data Tables -->
+		<script src="{{ asset('public/vendor/datatables/dataTables.min.js') }}"></script>
+		<script src="{{ asset('public/vendor/datatables/dataTables.bootstrap.min.js') }}"></script>
+
+        	<!-- Custom Data tables -->
+		<script src="{{ asset('public/vendor/datatables/custom/custom-datatables.js') }}"></script>
+		<script src="{{ asset('public/vendor/datatables/custom/fixedHeader.js') }}"></script>
+
+		<!-- Download / CSV / Copy / Print -->
+		<script src="{{ asset('public/vendor/datatables/buttons.min.js') }}"></script>
+		<script src="{{ asset('public/vendor/datatables/jszip.min.js') }}"></script>
+		<script src="{{ asset('public/vendor/datatables/pdfmake.min.js') }}"></script>
+		<script src="{{ asset('public/vendor/datatables/vfs_fonts.js') }}"></script>
+		<script src="{{ asset('public/vendor/datatables/html5.min.js') }}"></script>
+		<script src="{{ asset('public/vendor/datatables/buttons.print.min.js') }}"></script>
+
+    <!-- Main Js Required -->
+    <script src="{{ asset('public/js/main.js') }}"></script>
+
+
 
 
 @include('sweetalert::alert')
