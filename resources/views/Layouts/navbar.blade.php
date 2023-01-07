@@ -37,6 +37,20 @@
                 </li>
                 <!-- end Paitent -->
 
+                    <!-- Doctor -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="appsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon-package nav-icon"></i>
+                            الاطباء
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="appsDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('doctors.index') }}">قائمه الاطباء</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- end Doctor -->
+
                     <!-- visits -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="appsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

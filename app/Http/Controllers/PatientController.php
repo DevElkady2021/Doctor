@@ -44,6 +44,7 @@ class PatientController extends Controller
             'address'=>$request->address,
             'phone'=>$request->phone,
             'note'=>$request->note,
+            'type'=>$request->type,
 
         ]);
         toastr()->success('تم اضافه البيانات بنجاح');
@@ -88,6 +89,7 @@ class PatientController extends Controller
             'address'=>$request->address,
             'phone'=>$request->phone,
             'note'=>$request->note,
+            'type'=>$request->type,
         ]);
         toastr()->success('تم تحديث البيانات بنجاح');
         return redirect()->route('patients.index');

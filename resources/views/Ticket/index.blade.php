@@ -1,4 +1,4 @@
-@extends('Layouts.header')
+@extends('home')
 @section('title', 'روشته ')
 @section('css')
 

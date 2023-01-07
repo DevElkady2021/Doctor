@@ -64,7 +64,7 @@
 				<div class="page-header">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">الرئيسيه</li>
-						<li class="breadcrumb-item active">@yield('page')</li>
+						<li class="breadcrumb-item active ">@yield('page')</li>
 					</ol>
 				</div>
 				<!-- Page header end -->
