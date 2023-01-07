@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Models\Visit;
-use Illuminate\Http\Request;
+use App\Models\Doctor;
+use App\Models\Ticket;
 use App\Models\patient;
 use App\Models\Product;
-use App\Models\Ticket;
-use DB;
+use Illuminate\Http\Request;
 
 
 class VisitController extends Controller
@@ -22,9 +23,10 @@ class VisitController extends Controller
     public function index()
     {
         $patients = patient::get();
+        $doctors = Doctor::get();
         $visits = Visit::get();
         $products = Product::get();
-        return view('visits.index',compact('visits','patients','products'));
+        return view('visits.index',compact('visits','patients','products','doctors'));
     }
 
     /**
@@ -48,6 +50,8 @@ class VisitController extends Controller
          Visit::create([
             'date'=>$request->date,
             'patient_id'=>$request->patient_id,
+            'doctor_id'=>$request->doctor_id,
+            'note'=>$request->note,
         ]);
 
         return redirect()->route('visits.index');
@@ -84,10 +88,13 @@ class VisitController extends Controller
      */
     public function update(Request $request,$id)
     {
-        $visits = visit::where('id',$id)->first();
-        $visits->update([
+        $visit = Visit::where('id',$id)->first();
+     
+        $visit->update([
             'date'=>$request->date,
             'patient_id'=>$request->patient_id,
+            'doctor_id'=>$request->doctor_id,
+            'note'=>$request->note,
         ]);
 
         return redirect()->route('visits.index');

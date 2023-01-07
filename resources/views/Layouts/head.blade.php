@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="{{ asset('public/vendor/datatables/dataTables.bs4.css') }}" />
 <link rel="stylesheet" href="{{ asset('public/vendor/datatables/dataTables.bs4-custom.css') }}" />
 <link href="{{ asset('public/vendor/datatables/buttons.bs.css') }}" rel="stylesheet" />
+    	<!-- Bootstrap Select CSS -->
+		<link rel="stylesheet" href="{{ asset('public/vendor/bs-select/bs-select.css') }}" />
 
 
 @yield('css')

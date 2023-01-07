@@ -23,11 +23,10 @@
 		<script src="{{ asset('public/vendor/datatables/html5.min.js') }}"></script>
 		<script src="{{ asset('public/vendor/datatables/buttons.print.min.js') }}"></script>
 
-    <!-- Main Js Required -->
-    <script src="{{ asset('public/js/main.js') }}"></script>
+		<!-- Bootstrap Select JS -->
+		<script src="{{ asset('public/vendor/bs-select/bs-select.min.js') }}"></script>
 
+    	<!-- Main Js Required -->
+    	<script src="{{ asset('public/js/main.js') }}"></script>
 
-
-
-@include('sweetalert::alert')
 @yield('scripts')

@@ -11,12 +11,7 @@ class Visit extends Model
     use HasFactory;
 
 
-    protected $table = 'visits';
-    protected $fillable = [
-        'date',
-        'patient_id',
-        
-    ];
+    protected $fillable = ['date','patient_id','doctor_id','note',];
 
 
     public function patient(){
@@ -25,5 +20,9 @@ class Visit extends Model
 
     public function product(){
         return $this->belongsToMany('App\Models\Product');
+    }
+
+    public function doctor(){
+        return $this->belongsTo('App\Models\Doctor');
     }
 }

@@ -15,4 +15,8 @@ class Doctor extends Model
            'email',
            'address','phone','note','about','other_data','image','Specialization'
     ];
+
+    public function visits(){
+        return $this->hasMany('App\Models\Visit','doctor_id');
+    }
 }
