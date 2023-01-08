@@ -24,9 +24,18 @@ class VisitController extends Controller
     {
         $patients = patient::get();
         $doctors = Doctor::get();
-        $visits = Visit::get();
+        $visits = Visit::where('status',0)->orderBy('id', 'DESC')->get();
         $products = Product::get();
         return view('visits.index',compact('visits','patients','products','doctors'));
+    }
+
+    public function endVisit()
+    {
+        $patients = patient::get();
+        $doctors = Doctor::get();
+        $visits = Visit::where('status',1)->orderBy('id', 'DESC')->get();
+        $products = Product::get();
+        return view('visits.endVisit',compact('visits','patients','products','doctors'));
     }
 
     /**
@@ -52,6 +61,7 @@ class VisitController extends Controller
             'patient_id'=>$request->patient_id,
             'doctor_id'=>$request->doctor_id,
             'note'=>$request->note,
+            'status'=>0,
         ]);
 
         return redirect()->route('visits.index');
@@ -95,6 +105,7 @@ class VisitController extends Controller
             'patient_id'=>$request->patient_id,
             'doctor_id'=>$request->doctor_id,
             'note'=>$request->note,
+            'status'=>0,
         ]);
 
         return redirect()->route('visits.index');

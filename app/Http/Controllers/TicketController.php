@@ -53,10 +53,11 @@ class TicketController extends Controller
      */
     public function show($id)
     {
-        $visit = Visit::where('id',$id)->first();
+        $ticket = Ticket::where('visit_id',$id)->get();
         $patients = patient::get();
         $products = Product::get();
-        return view('Ticket.Print',compact('visit','patients','products'));
+        $visit = Visit::where('id',$id)->first();
+        return view('Ticket.Print',compact('visit','patients','products','ticket'));
      
     }
 
@@ -93,6 +94,9 @@ class TicketController extends Controller
                     'visit_id'=>$id[$i],
                     'product_id'=>$product[$i],
                      'dose'=>$dose[$i],
+                ]);
+                $visit->update([
+                    'status'=>1,
                 ]);
 
              }

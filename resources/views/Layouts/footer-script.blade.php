@@ -25,8 +25,9 @@
 
 		<!-- Bootstrap Select JS -->
 		<script src="{{ asset('public/vendor/bs-select/bs-select.min.js') }}"></script>
-
+	
     	<!-- Main Js Required -->
     	<script src="{{ asset('public/js/main.js') }}"></script>
+		<script src="{{ asset('public/js/printThis.js') }}"></script>
 
 @yield('scripts')

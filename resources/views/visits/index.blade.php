@@ -36,6 +36,10 @@
                             <th>ملاحظات</th>
                             <th></th>
                             <th></th>
+                            <th></th>
+                            <th></th>
+
+
 
                         </tr>
                     </thead>
@@ -55,6 +59,10 @@
                                 <span class="icon-trash text-danger h5"></span>
                             </button></td>
 
+                            <td><a href="{{ route('ticket.edit',$visit->id) }}"><span class="icon-file text-danger h5"></span></a></td>
+                       
+
+
                             <!-- Edit   Modal -->
                             <div class="modal fade" id="edit{{ $visit->id }}" tabindex="-1" role="dialog" aria-labelledby="basicModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
@@ -69,14 +77,12 @@
                                             @csrf
                                             @method('PUT')
                                         <div class="modal-body">
-                                        
                                             <div class="col-xl-12 col-lg col-md-12 col-sm-12 col-12">
                                                 <div class="form-group">
                                                     <label for="inputReadOnly">تاريخ الزيارة <span class="text-danger">*</span></label>
                                                     <input class="form-control" id="inputReadOnly" type="date"  name="date" value="{{ $visit->date }}">
                                                 </div>
                                             </div>
-                                        
                                             <div class="col-xl-12 col-lg col-md-12 col-sm-12 col-12">
                                                 <div class="form-group">
                                                     <label for="inputReadOnly">اسم المريض <span class="text-danger">*</span></label>
@@ -87,7 +93,6 @@
                                                     </select>
                                                 </div>
                                             </div>
-
                                             <div class="col-xl-12 col-lg col-md-12 col-sm-12 col-12">
                                                 <div class="form-group">
                                                     <label for="inputReadOnly">الطبيب المعالج <span class="text-danger">*</span></label>
@@ -98,13 +103,11 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            
                                             <div class="col-xl-12 col-lg col-md-12 col-sm-12 col-12">
                                                 <div class="form-group">
                                                     <textarea name="note" id="" cols="60" rows="3"  class="form-control">{{ $visit->note }}</textarea>
                                                 </div>
                                             </div>
-                                        
                                         </div>
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-primary">حفظ</button>
@@ -130,7 +133,6 @@
                                             @csrf
                                             @method('Delete')
                                         <div class="modal-body">
-                                        
                                             <div class="col-xl-12 col-lg col-md-12 col-sm-12 col-12">
                                                 <div class="form-group">
                                                     <h5>هل انت متاكد من حذف زياره 
@@ -142,8 +144,6 @@
                                                    
                                                 </div>
                                             </div>
-                                
-                                        
                                         </div>
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-primary">حفظ</button>
@@ -153,7 +153,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </tr>
                         @endforeach
                      </tbody>
@@ -191,7 +190,6 @@
                             <select class="form-control selectpicker" data-live-search="true" name="patient_id">
                                   <option label="" selected disabled>اختر المريض</option>
                                 @foreach ($patients as $patient)
-                              
                                     <option value="{{ $patient->id }}">{{ $patient->name }}</option>
                                 @endforeach
                             </select>
@@ -204,7 +202,6 @@
                             <select class="form-control selectpicker" data-live-search="true" name="doctor_id">
                                    <option label="" selected disabled>اختر الطبيب</option>
                                 @foreach ($doctors as $doctor)
-                                
                                     <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
                                 @endforeach
                             </select>
@@ -229,6 +226,6 @@
 
 @endsection
 @section('scripts')
-    
+
 @endsection
 

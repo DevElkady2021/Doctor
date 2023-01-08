@@ -59,7 +59,10 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="appsDropdown">
                             <li>
-                                <a class="dropdown-item" href="{{ route('visits.index') }}"> الزيارات </a>
+                                <a class="dropdown-item" href="{{ route('visits.index') }}">  الزيارات الحديثه </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('endVisit') }}">  الزيارات المنتهيه </a>
                             </li>
                         </ul>
                     </li>

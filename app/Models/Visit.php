@@ -11,7 +11,7 @@ class Visit extends Model
     use HasFactory;
 
 
-    protected $fillable = ['date','patient_id','doctor_id','note',];
+    protected $fillable = ['date','patient_id','doctor_id','note','status'];
 
 
     public function patient(){

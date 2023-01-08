@@ -28,6 +28,7 @@ Route::group(['middleware'=>'auth:web'],function (){
     Route::resource('/visits',VisitController::class);
     Route::resource('/ticket',TicketController::class);
     Route::resource('/doctors',DoctorController::class);
+    Route::get('endVisit',[VisitController::class,'endVisit'])->name('endVisit');
 
 
 
