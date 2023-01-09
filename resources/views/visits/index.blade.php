@@ -33,14 +33,9 @@
                             <th>تاريخ الزياره</th>
                             <th>اسم المريض </th>
                             <th>الطبيب المعالج</th>
-                            <th>ملاحظات</th>
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th></th>
-
-
-
                         </tr>
                     </thead>
                     <tbody>
@@ -51,7 +46,6 @@
                             <td>{{ $visit->date }}</td>
                             <td>{{ $visit->patient->name }}</td>
                             <td>{{ $visit->doctor->name }}</td>
-                            <td>{{ $visit->note }}</td>
                             <td>  <button type="button" class="btn btn" data-toggle="modal" data-target="#edit{{ $visit->id }}">
                                 <span class="icon-border_color text-success h5"></span> 
                             </button></td>
@@ -129,7 +123,7 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <form action="{{ route('patients.destroy',$visit->id) }}" method="post" >
+                                        <form action="{{ route('visits.destroy',$visit->id) }}" method="post" >
                                             @csrf
                                             @method('Delete')
                                         <div class="modal-body">

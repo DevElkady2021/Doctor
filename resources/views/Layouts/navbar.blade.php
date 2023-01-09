@@ -82,8 +82,36 @@
                     </li>
                     <!-- end prouduts -->
 
+                         <!-- Users -->
+                         <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="appsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="icon-package nav-icon"></i>
+                                المستخدمين
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="appsDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('visits.index') }}">قائمه المستخدمين</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-toggle sub-nav-link" href="#" id="submenuDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										صلاحيات المستخدمين
+									</a>
+                                    
+                                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="submenuDropdown">
+										<li>
+											<a class="dropdown-item" href="chat.html">قائمه الصلاحيات</a>
+										</li>
+										<li>
+											<a class="dropdown-item" href="icons.html">عرض الصلاحيات</a>
+										</li>
+									</ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- end Users -->
+
                            <!-- reports -->
-                           <li class="nav-item dropdown">
+                           {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="appsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="icon-package nav-icon"></i>
                                 تقارير
@@ -93,7 +121,7 @@
                                     <a class="dropdown-item" href="#"> تقارير </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
                         <!-- end reports -->
             </ul>
         </div>

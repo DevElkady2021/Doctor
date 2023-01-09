@@ -25,6 +25,13 @@
             <form action="{{ route('ticket.update',$visit->id) }}" method="POST">
                 @csrf
                 @method('PUT')
+                    <div class="row">
+                        <div class="col-xl-12 col-lg col-md-12 col-sm-12 col-12">
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">ملاحظات</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="اضف ملاحظاتك هنا" name="note"></textarea>
+                              </div>
+                    </div>
                 <table class="table table-striped" id="table">
                     <thead>
                         <tr>

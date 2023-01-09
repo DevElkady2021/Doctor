@@ -7,6 +7,8 @@ use App\Models\Visit;
 use App\Models\patient;
 use App\Models\Product;
 use App\Models\Ticket;
+Use Alert;
+
 
 class TicketController extends Controller
 {
@@ -96,10 +98,12 @@ class TicketController extends Controller
                      'dose'=>$dose[$i],
                 ]);
                 $visit->update([
+                    'note'=>$request->note,
                     'status'=>1,
                 ]);
 
              }
+             Alert::success(' تم اضافة البيانات بنجاح ');
              return redirect()->route('visits.index');
     }
 

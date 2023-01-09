@@ -6,90 +6,585 @@
 @section('css')
     <style>
         @media print {
-  #print {
-    display: none;
-  }
-}
+            #print {
+                display: none;
+            }
+        }
     </style>
 @endsection
 
 @section('content')
-    <!-- row -->
-    {{-- <div class="container">
-        <div class="row ">
-            <input type="button" value="طباعه" class="btn btn-danger w-50 m-auto " >
-            <div class="col-7 m-auto" >
-                <div class="card" >
-                    <img src="{{ asset('public/img/icon.png') }}" class="card-img" alt="Elkady" style="opacity: .2">
-                    <div class="card-img-overlay">
-                        <h5 class="card-title h3" style="font-weight: bolder"><span class="h3"
-                                style="font-weight: bolder">دكتور / </span> {{ $visit->doctor->name }}</h5>
-                        <p class="card-text">{{ $visit->doctor->Specialization }}</p>
-                        <hr style="border: 3px double ">
-                        <div class="row mb-5">
-                            <div class="col-9">
-                                <span class="mx-1" style="font-weight: 600">اسم المريض / </span>
-                                {{ $visit->patient->name }}
-                            </div>
-                            <div class="col-3">
-                                <span class="mx-1" style="font-weight: 600">التاريخ / </span>
-                                {{ $visit->date }}
-                            </div>
-                        </div>
-                        <div class="row">
-
-                            <div class="col-9 m-auto">
-
-                            </div>
-                            <div class="col-3">
-                                <img src="{{ asset('public/img/icon.png') }}" alt="" width="25">
-                            </div>
-                        </div>
-                        @foreach ($ticket as $pro)
-                            <div class="row text-center ">
-
-                                <div class="col-3">
-                                    <span class="mb-1 h5">{{ $pro->dose }}</span>
-                                </div>
-
-                                <div class="col-9 ">
-                                    <span
-                                        class="mb-1  h5">{{ app\Models\product::where('id', $pro->product_id)->first()->name }}
-                                    </span>
-
-                                </div>
 
 
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <!-- Row start -->
+                <div class="row gutters bg-info">
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-0 col-0">
 
-                            </div>
-                            <br><br>
-                        @endforeach
-                    </div>
-                    <hr>
-                    <div class="card-footer">
-                        {{ $visit->doctor->address }}
-                        <br><br>
-                        {{ $visit->doctor->phone }}
+
 
                     </div>
+                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12" id="card_print">
+                        <div class="card"
+                            style='background: rgb(34,193,195);
+                                                background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);'>
+                            <div class="card-body p-0">
+                                <div class="invoice-container">
+                                    <div class="invoice-header">
 
+                                        <!-- Row start -->
+                                        <div class="row gutters">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                                <div class="custom-actions-btns mb-5">
+                                                    <a href="#" class="btn btn-dark" id="print">
+                                                        <i class="icon-printer"></i> Print
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Row end -->
+
+                                        <!-- Row start -->
+                                        <div class="row gutters">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 text-center">
+                                                <a class="invoice-logo">
+                                                    <img src="{{ asset('public/img/icon.png') }}" alt="Doctor"
+                                                        width="100" />
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                        <!-- Row end -->
+
+                                        <!-- Row start -->
+                                        <div class="row gutters">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                                <div class="invoice-details">
+                                                    <div class="invoice-num">
+                                                        <div class="h3">
+                                                            <span style="font-weight:bolder;color:black;" class="mx-2">
+                                                                دكتور :</span>
+                                                            {{ $visit->doctor->name }}
+                                                        </div>
+                                                        <div>
+                                                            <span style="font-weight:bolder;color:black;" class="mx-2">
+                                                                {{ $visit->doctor->Specialization }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="row">
+                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                        <div class="invoice-details">
+                                                            <address>
+                                                                <span style="font-weight:bolder;color:black;"
+                                                                    class="mx-2"> اسم المريض :</span>
+                                                                {{ $visit->patient->name }}
+
+                                                            </address>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                        <div class="invoice-details">
+                                                            <address>
+                                                                <span style="font-weight:bolder;color:black;"
+                                                                    class="mx-2"> التاريخ :</span>
+                                                                {{ $visit->date }}
+                                                            </address>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!-- Row end -->
+
+                                    </div>
+
+                                    <div class="invoice-body">
+
+
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="invoice-details">
+                                                    <address>
+                                                        <span style="font-weight:bolder;color:black;" class="mx-2"></span>
+                                                        {{ $visit->note }}
+                                                    </address>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <br>
+
+                                        <!-- Row start -->
+                                        <div class="row gutters">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th class="text-right"> <img
+                                                                        src="{{ asset('public/img/icon.png') }}"
+                                                                        alt="Doctor" width="25" class="ml-5" /></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="text-center">
+                                                            @foreach ($ticket as $item)
+                                                                <tr>
+                                                                    <td>{{ $item->dose }}</td>
+                                                                    <td class="text-center">
+                                                                        {{ App\Models\product::where('id', $item->product_id)->first()->name }}
+                                                                    </td>
+
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Row end -->
+                                    </div>
+
+                                    <div class="invoice-footer">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <div class="invoice-details">
+                                                    <address>
+                                                        <span style="font-weight:bolder;color:black;" class="mx-2"> رقم
+                                                            التليفون :</span>
+                                                        {{ $visit->doctor->phone }}
+                                                    </address>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <div class="invoice-details">
+                                                    <address>
+                                                        <span style="font-weight:bolder;color:black;" class="mx-2">
+                                                            العنوان :</span>
+                                                        {{ $visit->doctor->address }}
+                                                    </address>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 h4 mt-2 mb-2">
+                                                <span style="font-weight:bolder;color:black;border-bottom:3px double red;"
+                                                    class="p-2">مع تمنياتنا لكم بالشفاء العاجل</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-0 col-0">
+
+
+
+                    </div>
                 </div>
+                <!-- Row end -->
+            </div>
+            <div class="carousel-item bg-info">
+                <!-- Row start -->
+                <div class="row gutters">
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-0 col-0">
 
 
 
+                    </div>
+                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12" id="card_print1">
+                        <div class="card"
+                            style='background: rgb(2,0,36);
+                                    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);'>
+                            <div class="card-body p-0">
+                                <div class="invoice-container">
+                                    <div class="invoice-header">
+
+                                        <!-- Row start -->
+                                        <div class="row gutters">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                                <div class="custom-actions-btns mb-5">
+                                                    <a href="#" class="btn btn-dark" id="print1">
+                                                        <i class="icon-printer"></i> Print
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Row end -->
+
+                                        <!-- Row start -->
+                                        <div class="row gutters">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 text-center">
+                                                <a class="invoice-logo">
+                                                    <img src="{{ asset('public/img/icon.png') }}" alt="Doctor"
+                                                        width="100" />
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                        <!-- Row end -->
+
+                                        <!-- Row start -->
+                                        <div class="row gutters">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                                <div class="invoice-details">
+                                                    <div class="invoice-num">
+                                                        <div class="h3">
+                                                            <span style="font-weight:bolder;color:black;" class="mx-2">
+                                                                دكتور :</span>
+                                                            {{ $visit->doctor->name }}
+                                                        </div>
+                                                        <div>
+                                                            <span style="font-weight:bolder;color:black;" class="mx-2">
+                                                                {{ $visit->doctor->Specialization }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="row">
+                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                        <div class="invoice-details">
+                                                            <address>
+                                                                <span style="font-weight:bolder;color:black;"
+                                                                    class="mx-2"> اسم المريض :</span>
+                                                                {{ $visit->patient->name }}
+
+                                                            </address>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                        <div class="invoice-details">
+                                                            <address>
+                                                                <span style="font-weight:bolder;color:black;"
+                                                                    class="mx-2"> التاريخ :</span>
+                                                                {{ $visit->date }}
+                                                            </address>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!-- Row end -->
+
+                                    </div>
+
+                                    <div class="invoice-body">
+
+
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="invoice-details">
+                                                    <address>
+                                                        <span style="font-weight:bolder;color:black;"
+                                                            class="mx-2"></span>
+                                                        {{ $visit->note }}
+                                                    </address>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <br>
+
+                                        <!-- Row start -->
+                                        <div class="row gutters">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th class="text-right"> <img
+                                                                        src="{{ asset('public/img/icon.png') }}"
+                                                                        alt="Doctor" width="25" class="ml-5" />
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="text-center">
+                                                            @foreach ($ticket as $item)
+                                                                <tr>
+                                                                    <td>{{ $item->dose }}</td>
+                                                                    <td class="text-center">
+                                                                        {{ App\Models\product::where('id', $item->product_id)->first()->name }}
+                                                                    </td>
+
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Row end -->
+                                    </div>
+
+                                    <div class="invoice-footer">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <div class="invoice-details">
+                                                    <address>
+                                                        <span style="font-weight:bolder;color:black;" class="mx-2"> رقم
+                                                            التليفون :</span>
+                                                        {{ $visit->doctor->phone }}
+                                                    </address>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <div class="invoice-details">
+                                                    <address>
+                                                        <span style="font-weight:bolder;color:black;" class="mx-2">
+                                                            العنوان :</span>
+                                                        {{ $visit->doctor->address }}
+                                                    </address>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 h4 mt-2 mb-2">
+                                                <span style="font-weight:bolder;color:black;border-bottom:3px double red;"
+                                                    class="p-2">مع تمنياتنا لكم بالشفاء العاجل</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-0 col-0">
+
+
+
+                    </div>
+                </div>
+                <!-- Row end -->
+            </div>
+            <div class="carousel-item bg-info">
+             
+                <!-- Row start -->
+                <div class="row gutters">
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-0 col-0">
+
+
+
+                    </div>
+                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12" id="card_print2">
+                        <div class="card"
+                            style='background: rgb(131,58,180);
+                            background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);'>
+                            <div class="card-body p-0">
+                                <div class="invoice-container">
+                                    <div class="invoice-header">
+
+                                        <!-- Row start -->
+                                        <div class="row gutters">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                                <div class="custom-actions-btns mb-5">
+                                                    <a href="#" class="btn btn-dark" id="print2">
+                                                        <i class="icon-printer"></i> Print
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Row end -->
+
+                                        <!-- Row start -->
+                                        <div class="row gutters">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 text-center">
+                                                <a class="invoice-logo">
+                                                    <img src="{{ asset('public/img/icon.png') }}" alt="Doctor"
+                                                        width="100" />
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                        <!-- Row end -->
+
+                                        <!-- Row start -->
+                                        <div class="row gutters">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                                <div class="invoice-details">
+                                                    <div class="invoice-num">
+                                                        <div class="h3">
+                                                            <span style="font-weight:bolder;color:black;" class="mx-2">
+                                                                دكتور :</span>
+                                                            {{ $visit->doctor->name }}
+                                                        </div>
+                                                        <div>
+                                                            <span style="font-weight:bolder;color:black;" class="mx-2">
+                                                                {{ $visit->doctor->Specialization }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="row">
+                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                        <div class="invoice-details">
+                                                            <address>
+                                                                <span style="font-weight:bolder;color:black;"
+                                                                    class="mx-2"> اسم المريض :</span>
+                                                                {{ $visit->patient->name }}
+
+                                                            </address>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                        <div class="invoice-details">
+                                                            <address>
+                                                                <span style="font-weight:bolder;color:black;"
+                                                                    class="mx-2"> التاريخ :</span>
+                                                                {{ $visit->date }}
+                                                            </address>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!-- Row end -->
+
+                                    </div>
+
+                                    <div class="invoice-body">
+
+
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="invoice-details">
+                                                    <address>
+                                                        <span style="font-weight:bolder;color:black;"
+                                                            class="mx-2"></span>
+                                                        {{ $visit->note }}
+                                                    </address>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <br>
+
+                                        <!-- Row start -->
+                                        <div class="row gutters">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th class="text-right"> <img
+                                                                        src="{{ asset('public/img/icon.png') }}"
+                                                                        alt="Doctor" width="25" class="ml-5" />
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="text-center">
+                                                            @foreach ($ticket as $item)
+                                                                <tr>
+                                                                    <td>{{ $item->dose }}</td>
+                                                                    <td class="text-center">
+                                                                        {{ App\Models\product::where('id', $item->product_id)->first()->name }}
+                                                                    </td>
+
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Row end -->
+                                    </div>
+
+                                    <div class="invoice-footer">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <div class="invoice-details">
+                                                    <address>
+                                                        <span style="font-weight:bolder;color:black;" class="mx-2"> رقم
+                                                            التليفون :</span>
+                                                        {{ $visit->doctor->phone }}
+                                                    </address>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <div class="invoice-details">
+                                                    <address>
+                                                        <span style="font-weight:bolder;color:black;" class="mx-2">
+                                                            العنوان :</span>
+                                                        {{ $visit->doctor->address }}
+                                                    </address>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 h4 mt-2 mb-2">
+                                                <span style="font-weight:bolder;color:black;border-bottom:3px double red;"
+                                                    class="p-2">مع تمنياتنا لكم بالشفاء العاجل</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-0 col-0">
+
+
+
+                    </div>
+                </div>
+                <!-- Row end -->
             </div>
         </div>
-    </div> --}}
+        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
 
-<!-- Row start -->
-<div class="row gutters">
+    {{-- ------------------------------------------ --}}
+
+    <!-- Row start -->
+    {{-- <div class="row gutters">
     <div class="col-xl-2 col-lg-2 col-md-2 col-sm-0 col-0">
 
         
 
     </div>
-    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12" id="card_print">
-        <div class="card">
+    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12" id="card_print" >
+        <div class="card" style='background: rgb(34,193,195);
+        background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);'>
             <div class="card-body p-0">
                 <div class="invoice-container">
                     <div class="invoice-header">
@@ -108,38 +603,53 @@
 
                         <!-- Row start -->
                         <div class="row gutters">
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 m-auto">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 text-center">
                                 <a  class="invoice-logo">
-                                    <img src="{{ asset('public/img/icon.png') }}" alt="Wafi Admin Dashboard" />
+                                    <img src="{{ asset('public/img/icon.png') }}" alt="Doctor" width="100" />
                                 </a>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                           
-                            </div>
+                            
                         </div>
                         <!-- Row end -->
 
                         <!-- Row start -->
                         <div class="row gutters">
-                            <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12">
-                                <div class="invoice-details">
-                                    <address>
-                                        {{ $visit->patient->name }}
-                                        <br />
-                                        {{ $visit->date }}
-                                    </address>
-                                </div>
-                            </div>
-                            <div class="col-lg-5 col-md-5 col-sm-5 col-12">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-12 ">
                                 <div class="invoice-details">
                                     <div class="invoice-num">
                                         <div class="h3">
-                                            <label for="">دكتور / </label>
+                                            <span style="font-weight:bolder;color:black;" class="mx-2"> دكتور   :</span> 
                                             {{ $visit->doctor->name }}</div>
-                                        <div> {{ $visit->doctor->Specialization }}</div>
+                                        <div>
+                                            <span style="font-weight:bolder;color:black;" class="mx-2"> {{ $visit->doctor->Specialization }}</span> 
+                                           </div>
                                     </div>
+                                    <hr>
                                 </div>													
                             </div>
+                          
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <div class="invoice-details">
+                                            <address>
+                                               <span style="font-weight:bolder;color:black;" class="mx-2"> اسم المريض :</span> 
+                                                {{ $visit->patient->name }}
+                                               
+                                            </address>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <div class="invoice-details">
+                                            <address>
+                                                <span style="font-weight:bolder;color:black;" class="mx-2">  التاريخ :</span> 
+                                                {{ $visit->date }}
+                                            </address>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
                         </div>
                         <!-- Row end -->
 
@@ -147,72 +657,40 @@
 
                     <div class="invoice-body">
 
+
+                            <div class="row">
+                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                 <div class="invoice-details">
+                                     <address>
+                                         <span style="font-weight:bolder;color:black;" class="mx-2"></span> 
+                                         {{ $visit->note }}
+                                     </address>
+                                 </div>
+                             </div>
+                         
+                            
+                            </div>
+                            <br>
+
                         <!-- Row start -->
                         <div class="row gutters">
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered">
+                                    <table class="table" >
                                         <thead>
                                             <tr>
-                                                <th>Items</th>
-                                                <th>Product ID</th>
-                                                <th>Quantity</th>
-                                                <th>Sub Total</th>
+                                                <th></th>
+                                                <th class="text-right"> <img src="{{ asset('public/img/icon.png') }}" alt="Doctor" width="25" class="ml-5"/></th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    Wordpress Template
-                                                    <p class="m-0 text-muted">
-                                                        Reference site about Lorem Ipsum, giving information on its origins.
-                                                    </p>
-                                                </td>
-                                                <td>#50000981</td>
-                                                <td>9</td>
-                                                <td>$5000.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Wafi Admin Template
-                                                    <p class="m-0 text-muted">
-                                                        As well as a random Lipsum generator.
-                                                    </p>
-                                                </td>
-                                                <td>#50000126</td>
-                                                <td>5</td>
-                                                <td>$100.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Unify Admin Template
-                                                    <p class="m-0 text-muted">
-                                                        Lorem ipsum has become the industry standard.
-                                                    </p>
-                                                </td>
-                                                <td>#50000821</td>
-                                                <td>6</td>
-                                                <td>$49.99</td>
-                                            </tr>
-                                            <tr>
-                                                <td>&nbsp;</td>
-                                                <td colspan="2">
-                                                    <p>
-                                                        Subtotal<br>
-                                                        Shipping &amp; Handling<br>
-                                                        Tax<br>
-                                                    </p>
-                                                    <h5 class="text-danger"><strong>Grand Total</strong></h5>
-                                                </td>			
-                                                <td>
-                                                    <p>
-                                                        $5000.00<br>
-                                                        $100.00<br>
-                                                        $49.00<br>
-                                                    </p>
-                                                    <h5 class="text-danger"><strong>$5150.99</strong></h5>
-                                                </td>
-                                            </tr>
+                                        <tbody class="text-center">
+                                           @foreach ($ticket as $item)
+                                           <tr>
+                                            <td>{{ $item->dose }}</td>
+                                            <td class="text-center">{{ App\Models\product::where('id',$item->product_id)->first()->name }}</td>
+                                           
+                                        </tr>
+                                           @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -222,7 +700,30 @@
                     </div>
 
                     <div class="invoice-footer">
-                        Thank you for your Business.
+                       <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="invoice-details">
+                                <address>
+                                    <span style="font-weight:bolder;color:black;" class="mx-2">  رقم التليفون :</span> 
+                                    {{ $visit->doctor->phone }}
+                                </address>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="invoice-details">
+                                <address>
+                                    <span style="font-weight:bolder;color:black;" class="mx-2">  العنوان  :</span> 
+                                    {{ $visit->doctor->address }}
+                                </address>
+                            </div>
+                        </div>
+                       
+                       </div>
+                       <div class="row" >
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 h4 mt-2 mb-2" >
+                            <span style="font-weight:bolder;color:black;border-bottom:3px double red;" class="p-2">مع تمنياتنا  لكم بالشفاء العاجل</span>
+                        </div> 
+                       </div>
                     </div>
 
                 </div>
@@ -234,8 +735,8 @@
         
 
     </div>
-</div>
-<!-- Row end -->
+</div> --}}
+    <!-- Row end -->
 
 
 @endsection
@@ -243,10 +744,18 @@
 
     <script>
         $(document).ready(function() {
-           $('#print').click(function(){
-           
-            $('#card_print').printThis();
-           });
+            $('#print').click(function() {
+
+                $('#card_print').printThis();
+            });
+            $('#print1').click(function() {
+
+                $('#card_print1').printThis();
+            });
+            $('#print2').click(function() {
+
+                $('#card_print2').printThis();
+            });
         });
     </script>
 @endsection

@@ -15,13 +15,7 @@
 		<script src="{{ asset('public/vendor/datatables/custom/custom-datatables.js') }}"></script>
 		<script src="{{ asset('public/vendor/datatables/custom/fixedHeader.js') }}"></script>
 
-		<!-- Download / CSV / Copy / Print -->
-		<script src="{{ asset('public/vendor/datatables/buttons.min.js') }}"></script>
-		<script src="{{ asset('public/vendor/datatables/jszip.min.js') }}"></script>
-		<script src="{{ asset('public/vendor/datatables/pdfmake.min.js') }}"></script>
-		<script src="{{ asset('public/vendor/datatables/vfs_fonts.js') }}"></script>
-		<script src="{{ asset('public/vendor/datatables/html5.min.js') }}"></script>
-		<script src="{{ asset('public/vendor/datatables/buttons.print.min.js') }}"></script>
+		
 
 		<!-- Bootstrap Select JS -->
 		<script src="{{ asset('public/vendor/bs-select/bs-select.min.js') }}"></script>
@@ -29,5 +23,8 @@
     	<!-- Main Js Required -->
     	<script src="{{ asset('public/js/main.js') }}"></script>
 		<script src="{{ asset('public/js/printThis.js') }}"></script>
+
+		@include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+
 
 @yield('scripts')

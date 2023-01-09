@@ -6,6 +6,8 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\patient;
 use App\Models\Visit;
+Use Alert;
+
 
 class ProductController extends Controller
 {
@@ -42,7 +44,7 @@ class ProductController extends Controller
             'name'=>$request->name,
             'dose'=>$request->dose,
         ]);
-
+        Alert::success(' تم اضافة البيانات بنجاح ');
         return redirect()->route('prouduts.index');
     }
 
@@ -54,15 +56,6 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $Visit = Visit::find(1  );
-        foreach ($Visit->product as $product) {
-            return $Visit;
-         }//--> product->visit
-
-        // $product = Product::find(3);
-        // foreach ($product->Visit as $Visit) {
-        //     return $product;
-        // } // ---> Visit->product
        
     }
 
@@ -91,7 +84,7 @@ class ProductController extends Controller
             'name'=>$request->name,
             'dose'=>$request->dose,
         ]);
-
+        Alert::success(' تم تحديث البيانات بنجاح ');
         return redirect()->route('prouduts.index');
     }
 
@@ -105,6 +98,7 @@ class ProductController extends Controller
     {
         $products = Product::where('id',$id)->first();
         $products->delete();
+        Alert::success(' تم حذف البيانات بنجاح ');
         return redirect()->route('prouduts.index');
     }
 }

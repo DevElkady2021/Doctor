@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Doctor;
 use App\Models\patient;
 use Illuminate\Http\Request;
+Use Alert;
+
 
 class DoctorController extends Controller
 {
@@ -86,7 +88,7 @@ class DoctorController extends Controller
         }
            
     
-            toastr()->success('تم اضافه البيانات بنجاح');
+        Alert::success(' تم اضافة البيانات بنجاح ');
             return redirect()->route('doctors.index');
 
        
@@ -174,7 +176,7 @@ class DoctorController extends Controller
       
 
         
-        toastr()->success('تم اضافه البيانات بنجاح');
+        Alert::success(' تم تحديث البيانات بنجاح ');
         return redirect()->route('doctors.index');
     }
 

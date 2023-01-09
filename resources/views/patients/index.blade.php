@@ -237,5 +237,5 @@
 
 @endsection
 @section('scripts')
-@include('sweetalert::alert')
+
 @endsection

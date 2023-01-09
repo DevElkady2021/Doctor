@@ -9,6 +9,8 @@ use App\Models\Ticket;
 use App\Models\patient;
 use App\Models\Product;
 use Illuminate\Http\Request;
+Use Alert;
+
 
 
 class VisitController extends Controller
@@ -63,7 +65,7 @@ class VisitController extends Controller
             'note'=>$request->note,
             'status'=>0,
         ]);
-
+        Alert::success(' تم اضافة البيانات بنجاح ');
         return redirect()->route('visits.index');
     }
 
@@ -107,7 +109,7 @@ class VisitController extends Controller
             'note'=>$request->note,
             'status'=>0,
         ]);
-
+        Alert::success(' تم تحديث البيانات بنجاح ');
         return redirect()->route('visits.index');
        
 
@@ -123,6 +125,7 @@ class VisitController extends Controller
     {
         $visits = visit::where('id',$id)->first();
         $visits->delete();
+        Alert::success(' تم حذف البيانات بنجاح ');
         return redirect()->route('visits.index');
     }
 

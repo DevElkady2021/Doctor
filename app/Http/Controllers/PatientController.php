@@ -47,7 +47,7 @@ class PatientController extends Controller
             'type'=>$request->type,
 
         ]);
-        toastr()->success('تم اضافه البيانات بنجاح');
+        Alert::success(' تم اضافة البيانات بنجاح ');
         return redirect()->route('patients.index');
     }
 
@@ -91,7 +91,7 @@ class PatientController extends Controller
             'note'=>$request->note,
             'type'=>$request->type,
         ]);
-        toastr()->success('تم تحديث البيانات بنجاح');
+        Alert::success(' تم تحديث البيانات بنجاح ');
         return redirect()->route('patients.index');
     }
 
@@ -105,7 +105,7 @@ class PatientController extends Controller
     {
         $patients =patient::where('id',$id)->first();
         $patients->delete();
-        toastr()->success('تم حذف البيانات بنجاح');
+        Alert::success(' تم حذف البيانات بنجاح ');
         return redirect()->route('patients.index');
     }
 }
